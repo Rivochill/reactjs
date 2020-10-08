@@ -18,11 +18,25 @@ function App() {
     
     setTareas([
         ...tareas,
-        {id: shortid.generate(), nombreTareas : 'tarea 1'}
+        {tarea, id: shortid.generate(), nombreTareas : 'tarea 1'}
       ])
     
     setTarea('')
   }
+
+  const elminarTarea = id => {
+    //console.log(id)
+    const arrayFiltrado = tareas.filter(item => item.id !== id)
+    setTareas(arrayFiltrado)
+
+  }
+
+
+
+
+
+
+
 
   return (
     <div className="container mg-5">
@@ -32,11 +46,27 @@ function App() {
         <div className="col-8">
           <h4 className="text-center">Lista de Tareas</h4>
           <ul className="list-group">
-            <li className="list-group-item">
-              <span className="lead">Tareas a realizar: </span>
-              <button className="btn btn-danger btn sm float-right mx-2">Elimiar</button>
-              <button className="btn btn-warning btn sm float-right">Editar</button>
-            </li>
+            {
+              tareas.map(item => (
+                <li key={item.id} className="list-group-item">
+                  <span className="lead">{item.nombreTarea}</span>
+                  <button 
+                  className="btn btn-danger btn sm float-right mx-2"
+                  onClick={()=> elminarTarea(item.id)}
+                  
+                  >
+                    Elimiar
+                  </button>
+                  
+                  <button 
+                  className="btn btn-warning btn sm float-right"
+                  >
+                    Editar
+                  </button>
+
+                </li>
+                  ))
+              }
           </ul>
         </div>
         <div className="col-4">
