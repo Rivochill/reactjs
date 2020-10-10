@@ -6,19 +6,19 @@ function App() {
   
   const [tarea,setTarea] = React.useState('')
   const [tareas,setTareas] = React.useState([])
-
+  const [modoEdicion, setModoEdicion] = React.useState(false)
   
   const agregarTarea = e => {
-    e.preventDefault()
-    
+    e.preventDefault()  
     if(!tarea.trim()){
-      console.log('Elemento vacío')
+      console.log('Campo vacío')
+      return
     }
-    console.log(tarea)
+    
     
     setTareas([
         ...tareas,
-        {tarea, id: shortid.generate(), nombreTareas : 'tarea 1'}
+        {tarea, id: shortid.generate()}
       ])
     
     setTarea('')
@@ -31,6 +31,9 @@ function App() {
 
   }
 
+  const editar = item => {
+    console.log(item)
+  }
 
 
 
@@ -40,7 +43,7 @@ function App() {
 
   return (
     <div className="container mg-5">
-      <h1 className="text-center">Crud simple</h1>
+      <h1 className="text-center">Tare-o-matic 3000</h1>
       <hr/>
       <div className="row">
         <div className="col-8">
@@ -60,6 +63,7 @@ function App() {
                   
                   <button 
                   className="btn btn-warning btn sm float-right"
+                  onClick={()=>editar(item.id)}
                   >
                     Editar
                   </button>
@@ -70,12 +74,12 @@ function App() {
           </ul>
         </div>
         <div className="col-4">
-          <h4 className="text-center">Formulario</h4>
+          <h4 className="text-center">Añadir tarea</h4>
           <form onSubmit={ agregarTarea }>
             <input 
               type="text" 
               className="form-control mb-2" 
-              placeholder="Ingresar tarea"
+              placeholder="Ingrese tarea"
               onChange={e => setTarea(e.target.value)}
               value={tarea}
             />
