@@ -25,7 +25,7 @@ function App() {
   }
 
   const elminarTarea = id => {
-    //console.log(id)
+    
     const arrayFiltrado = tareas.filter(item => item.id !== id)
     setTareas(arrayFiltrado)
 
@@ -52,7 +52,7 @@ function App() {
             {
               tareas.map(item => (
                 <li key={item.id} className="list-group-item">
-                  <span className="lead">{item.nombreTarea}</span>
+                  <span className="lead">{item.tarea}</span>
                   <button 
                   className="btn btn-danger btn sm float-right mx-2"
                   onClick={()=> elminarTarea(item.id)}
